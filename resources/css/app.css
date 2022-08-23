@@ -106,3 +106,19 @@
 .status-closed, .status-closed:before {
     @apply bg-red text-white;
 }
+
+.open {
+	@apply bg-gray-200
+}
+.considering {
+	@apply bg-purple
+}
+.in-progress {
+	@apply bg-yellow
+}
+.implemented {
+	@apply bg-green
+}
+.closed {
+	@apply bg-red
+}

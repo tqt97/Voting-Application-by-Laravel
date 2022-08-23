@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Idea;
-use Illuminate\Http\Request;
+use App\Models\Status;
+use App\Http\Requests\StoreStatusRequest;
+use App\Http\Requests\UpdateStatusRequest;
 
-class IdeaController extends Controller
+class StatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,7 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        $ideas = Idea::with('user', 'category', 'status')->latest()->simplePaginate(Idea::PAGINATION_COUNT);
-        // dd($ideas);
-        return view('idea.index', compact('ideas'));
+        //
     }
 
     /**
@@ -32,10 +31,10 @@ class IdeaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreStatusRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreStatusRequest $request)
     {
         //
     }
@@ -43,23 +42,21 @@ class IdeaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Status  $status
      * @return \Illuminate\Http\Response
      */
-    public function show(Idea $idea)
+    public function show(Status $status)
     {
-        return view('idea.show', [
-            'idea' => $idea,
-        ]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Status  $status
      * @return \Illuminate\Http\Response
      */
-    public function edit(Idea $idea)
+    public function edit(Status $status)
     {
         //
     }
@@ -67,11 +64,11 @@ class IdeaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateStatusRequest  $request
+     * @param  \App\Models\Status  $status
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Idea $idea)
+    public function update(UpdateStatusRequest $request, Status $status)
     {
         //
     }
@@ -79,10 +76,10 @@ class IdeaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Status  $status
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Idea $idea)
+    public function destroy(Status $status)
     {
         //
     }
