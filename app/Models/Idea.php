@@ -13,8 +13,8 @@ class Idea extends Model
 
     const PAGINATION_COUNT = 10;
 
-    // protected $fillable = ['title', 'slug', 'description','user_id', 'category_id','status_id'];
-    protected $guards = [];
+    protected $fillable = ['title', 'slug', 'description','user_id', 'category_id','status_id'];
+    // protected $guards = [];
 
     public function sluggable(): array
     {
