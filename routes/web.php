@@ -14,17 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 
-Route::view('/idea', 'show');
+// Route::view('/idea', 'show');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
 
-Route::resource('ideas',IdeaController::class);
+// Route::resource('ideas',IdeaController::class);
+
+Route::get('/', [IdeaController::class, 'index'])->name('ideas.index');
+Route::get('/ideas/{idea:slug}', [IdeaController::class, 'show'])->name('ideas.show');
 
 require __DIR__.'/auth.php';

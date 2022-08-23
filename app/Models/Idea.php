@@ -11,6 +11,8 @@ class Idea extends Model
 {
     use HasFactory, Sluggable;
 
+    const PAGINATION_COUNT = 10;
+
     protected $fillable = ['title', 'slug', 'description'];
 
     public function sluggable(): array
