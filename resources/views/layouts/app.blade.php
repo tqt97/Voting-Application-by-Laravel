@@ -22,7 +22,7 @@
 <body class="font-sans bg-gray-background text-gray-900 text-sm">
     <header class="flex flex-col md:flex-row items-center justify-between px-8 py-4">
         {{-- <a href="#"><img src="{{ asset('img/logo.svg') }}" alt="logo"></a> --}}
-        <a href="#" class="text-cyan-500 text-lg font-bold">
+        <a href="/" class="text-cyan-500 text-lg font-bold">
 
             <span>Vote</span>
             <span>App</span>
