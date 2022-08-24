@@ -41,7 +41,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-// 00de74cc472db55013930f5210f8e57b
+
+    // 00de74cc472db55013930f5210f8e57b
     public function getAvatar()
     {
         $firstCharacter = $this->email[0];
