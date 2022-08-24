@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'kutuanonline199@gmail.com',
             'password' => bcrypt('12341234'),
         ]);
-        \App\Models\User::factory(19)->create();
+        \App\Models\User::factory(4)->create();
 
         Category::factory()->create(['name' => 'Category 1']);
         Category::factory()->create(['name' => 'Category 2']);
@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
         Idea::factory(100)->create();
 
         // Generate unique votes. Ensure idea_id and user_id are unique for each row
-        foreach (range(1, 20) as $user_id) {
+        foreach (range(1, 5) as $user_id) {
             foreach (range(1, 100) as $idea_id) {
                 if ($idea_id % 2 === 0) {
                     Vote::factory()->create([

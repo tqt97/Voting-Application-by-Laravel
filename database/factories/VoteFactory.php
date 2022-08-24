@@ -18,7 +18,7 @@ class VoteFactory extends Factory
     {
         return [
             'idea_id' => $this->faker->numberBetween(1, 100),
-            'user_id' => $this->faker->numberBetween(1, 20),
+            'user_id' => $this->faker->numberBetween(1, 5),
         ];
     }
 }
