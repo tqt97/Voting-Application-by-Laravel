@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Idea;
-use App\Models\Vote;
 use Illuminate\Http\Request;
 
-class IdeaController extends Controller
+class VoteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,17 +13,7 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        $ideas = Idea::with('user', 'category', 'status')
-            ->addSelect([
-                'voted_by_user' => Vote::select('id')
-                    ->where('user_id', auth()->id())
-                    ->whereColumn('idea_id', 'ideas.id')
-            ])
-            ->withCount('votes')
-            ->latest()
-            ->simplePaginate(Idea::PAGINATION_COUNT);
-
-        return view('idea.index', compact('ideas'));
+        //
     }
 
     /**
@@ -55,14 +43,9 @@ class IdeaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Idea $idea)
+    public function show($id)
     {
-        $votesCount = $idea->votes->count();
-
-        return view('idea.show', [
-            'idea' => $idea,
-            'votesCount' => $votesCount,
-        ]);
+        //
     }
 
     /**
@@ -71,7 +54,7 @@ class IdeaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Idea $idea)
+    public function edit($id)
     {
         //
     }
@@ -83,7 +66,7 @@ class IdeaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Idea $idea)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -94,7 +77,7 @@ class IdeaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Idea $idea)
+    public function destroy($id)
     {
         //
     }

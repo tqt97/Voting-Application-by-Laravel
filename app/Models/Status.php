@@ -10,7 +10,7 @@ class Status extends Model
     use HasFactory;
 
     // protected $fillable = ['name', 'classes'];
-    protected $guards = [];
+    protected $guarded = [];
 
 
     public function ideas()
