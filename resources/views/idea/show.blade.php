@@ -10,7 +10,7 @@
 
     <livewire:idea.idea-show :idea="$idea" :votesCount="$votesCount" />
 
-    <livewire:idea.idea-comments :idea="$idea" />
+    <livewire:comment.idea-comments :idea="$idea" />
 
     <x-notification-success />
 
