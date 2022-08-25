@@ -1,17 +1,20 @@
 <div x-cloak x-data="{ isOpen: false }" x-show="isOpen" @keydown.escape.window="isOpen = false"
-    @custom-show-edit-modal.window="isOpen = true" x-init="window.livewire.on('ideaWasUpdated', () => {
+    @@custom-show-edit-modal.window="
+    isOpen = true
+    $nextTick(() => $refs.title.focus())
+"
+    x-init="window.livewire.on('ideaWasUpdated', () => {
         isOpen = false
-    })" x-cloak
-    class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    })" x-cloak class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog"
+    aria-modal="true">
     <div class="flex items-center justify-center min-h-screen">
         <div x-show.transition.opacity="isOpen" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
             aria-hidden="true">
         </div>
 
-        <div x-show="isOpen" x-transition:enter="ease-out duration-300"
-            x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
-            x-transition:leave="ease-in duration-300" x-transition:leave-start="opacity-100 scale-100"
-            x-transition:leave-end="opacity-0 scale-90"
+        <div x-show="isOpen" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
+            x-transition:enter-end="opacity-100 scale-100" x-transition:leave="ease-in duration-300"
+            x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90"
             class="modal bg-white rounded-xl overflow-hidden transform transition-all py-4 sm:max-w-lg sm:w-full">
             <div class="absolute top-0 right-0 pt-4 pr-4">
                 <button @click="isOpen = false" class="text-gray-400 hover:text-gray-500">
@@ -29,7 +32,7 @@
 
                 <form wire:submit.prevent="updateIdea" action="#" method="POST" class="space-y-4 px-4 py-6">
                     <div>
-                        <input wire:model.defer="title" type="text"
+                        <input wire:model.defer="title" x-ref="title" type="text"
                             class="w-full text-sm bg-gray-100 border-none rounded-xl placeholder-gray-900 px-4 py-2"
                             placeholder="Your Idea" required>
                         @error('title')
