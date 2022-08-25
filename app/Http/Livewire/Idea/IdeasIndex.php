@@ -93,7 +93,7 @@ class IdeasIndex extends Component
                         ->whereColumn('idea_id', 'ideas.id')
                 ])
                 ->withCount('votes')
-                // ->withCount('comments')
+                ->withCount('comments')
                 ->orderBy('id', 'desc')
                 ->simplePaginate()
                 ->withQueryString(),

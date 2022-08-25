@@ -2,10 +2,11 @@
 
 namespace App\Http\Livewire\Idea;
 
+use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\Vote;
-use Livewire\Component;
 use Illuminate\Http\Response;
+use Livewire\Component;
 
 class DeleteIdea extends Component
 {
@@ -23,8 +24,9 @@ class DeleteIdea extends Component
         }
 
         Vote::where('idea_id', $this->idea->id)->delete();
-
+        Comment::where('idea_id', $this->idea->id)->delete();
         Idea::destroy($this->idea->id);
+
         session()->flash('success_message', 'Idea was deleted successfully!');
 
         return redirect()->route('ideas.index');
