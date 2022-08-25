@@ -10,6 +10,8 @@
 
     <livewire:idea.idea-show :idea="$idea" :votesCount="$votesCount" />
 
+    <x-notification-success />
+
     <x-modal.container :idea="$idea" />
 
     <div class="comments-container relative space-y-6 ml-22 pt-4 my-8 mt-1">
