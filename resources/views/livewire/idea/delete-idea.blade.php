@@ -1,7 +1,7 @@
-<div x-cloak x-data="{ isOpen: false }" x-show="isOpen" @keydown.escape.window="isOpen = false"
+{{-- <div x-cloak x-data="{ isOpen: false }" x-show="isOpen" @keydown.escape.window="isOpen = false"
     @custom-show-delete-modal.window="
         isOpen = true
-        $nextTick(() => $refs.confirmButton.focus())    
+        $nextTick(() => $refs.confirmButton.focus())
     "
     x-init="window.livewire.on('ideaWasDeleted', () => {
         isOpen = false
@@ -20,7 +20,7 @@
                 <div class="sm:flex sm:items-start">
                     <div
                         class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                        <!-- Heroicon name: outline/exclamation -->
+
                         <svg class="h-6 w-6 text-red" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -51,4 +51,8 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+<x-modal.confirm event-to-open-modal="custom-show-delete-modal" event-to-close-modal="ideaWasDeleted"
+    modal-title="Delete Idea"
+    modal-description="Are you sure you want to delete this idea? This action cannot be undone."
+    modal-confirm-button-text="Delete" wire-click="deleteIdea" />

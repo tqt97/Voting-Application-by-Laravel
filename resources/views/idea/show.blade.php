@@ -10,21 +10,7 @@
 
     <livewire:idea.idea-show :idea="$idea" :votesCount="$votesCount" />
 
-    @can('update', $idea)
-        <livewire:idea.edit-idea :idea="$idea" />
-    @endcan
-
-    @can('delete', $idea)
-        <livewire:idea.delete-idea :idea="$idea" />
-    @endcan
-
-    @auth
-        <livewire:idea.mark-idea-as-spam :idea="$idea" />
-    @endauth
-
-    @admin
-        <livewire:idea.mark-idea-as-not-spam :idea="$idea" />
-    @endadmin
+    <x-modal.container :idea="$idea" />
 
     <div class="comments-container relative space-y-6 ml-22 pt-4 my-8 mt-1">
         @foreach (range(1, 3) as $comment)
