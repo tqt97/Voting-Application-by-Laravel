@@ -22,7 +22,7 @@ class SetStatus extends Component
 
     public function setStatus()
     {
-        if (!auth()->check() || !auth()->user()->isAdmin()) {
+        if (auth()->guest() || !auth()->user()->isAdmin()) {
             abort(Response::HTTP_FORBIDDEN);
         }
 
@@ -45,7 +45,7 @@ class SetStatus extends Component
                     Mail::to($user)
                         ->queue(new IdeaStatusUpdatedMailable($this->idea));
                     // if (env('MAIL_HOST', false) == 'smtp.mailtrap.io') {
-                        // sleep(1); //use usleep(500000) for half a second or less
+                    // sleep(1); //use usleep(500000) for half a second or less
                     // }
                 }
             });

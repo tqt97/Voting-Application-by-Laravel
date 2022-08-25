@@ -42,15 +42,17 @@
                             <ul class="absolute w-44 text-left font-semibold bg-white shadow-dialog rounded-xl z-10 py-3 md:ml-8 top-8 md:top-6 right-0 md:left-0"
                                 x-cloak x-show.transition.origin.top.left="isOpen" @click.away="isOpen = false"
                                 @keydown.escape.window="isOpen = false">
-                                <li>
-                                    <a href="#"
-                                        @click="isOpen = false
+                                @can('update', $idea)
+                                    <li>
+                                        <a href="#"
+                                            @click="isOpen = false
                                                 $dispatch('custom-show-edit-modal')
                                             "
-                                        class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">
-                                        Edit Idea
-                                    </a>
-                                </li>
+                                            class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">
+                                            Edit Idea
+                                        </a>
+                                    </li>
+                                @endcan
                                 <li><a href="#"
                                         class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Delete
                                         Idea</a></li>

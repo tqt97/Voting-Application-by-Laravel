@@ -1,9 +1,28 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 [x-cloak] {
     display: none !important;
+}
+.duration-300 {
+    transition-duration: 300ms;
+}
+
+.ease-in {
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+
+.ease-out {
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.scale-90 {
+    transform: scale(0.9);
+}
+
+.scale-100 {
+    transform: scale(1);
 }
 
 /* vertical line to the left of the comments */
@@ -43,13 +62,14 @@
     content: "";
     width: 3px;
     height: calc(100% - 60px);
-    background: theme('colors.gray-background');
+    background: theme("colors.gray-background");
 }
 .is-admin {
     border-width: 1px;
     border-image-source: linear-gradient(266deg, #21c8f6 98%, #637bff -52%);
     border-image-slice: 1;
-    background-image: linear-gradient(to bottom, #ffffff, #ffffff), linear-gradient(266deg, #21c8f6 98%, #637bff -52%);
+    background-image: linear-gradient(to bottom, #ffffff, #ffffff),
+        linear-gradient(266deg, #21c8f6 98%, #637bff -52%);
     background-origin: border-box;
     background-clip: content-box, border-box;
 }
@@ -62,7 +82,7 @@
     border: 7px solid white;
     box-shadow: 4px 4px 15px 0 rgba(36, 37, 38, 0.08);
     left: -58px;
-    background: theme('colors.purple');
+    background: theme("colors.purple");
     opacity: 1;
 }
 
@@ -74,7 +94,7 @@
     border: 7px solid white;
     box-shadow: 4px 4px 15px 0 rgba(36, 37, 38, 0.08);
     left: -58px;
-    background: theme('colors.purple');
+    background: theme("colors.purple");
     opacity: 1;
     z-index: 1;
 }
@@ -82,43 +102,49 @@
 .is-status-update {
     border-width: 1px;
     border-image-source: linear-gradient(266deg, #21c8f6 98%, #637bff -52%);
-    background-image: linear-gradient(to bottom, #ffffff, #ffffff), linear-gradient(266deg, #21c8f6 98%, #637bff -52%);
+    background-image: linear-gradient(to bottom, #ffffff, #ffffff),
+        linear-gradient(266deg, #21c8f6 98%, #637bff -52%);
     background-origin: border-box;
     background-clip: content-box, border-box;
 }
 
-.status-open, .status-open:before {
+.status-open,
+.status-open:before {
     @apply bg-gray-200;
 }
 
-.status-considering, .status-considering:before {
+.status-considering,
+.status-considering:before {
     @apply bg-purple text-white;
 }
 
-.status-in-progress, .status-in-progress:before {
+.status-in-progress,
+.status-in-progress:before {
     @apply bg-yellow text-white;
 }
 
-.status-implemented, .status-implemented:before {
+.status-implemented,
+.status-implemented:before {
     @apply bg-green text-white;
 }
 
-.status-closed, .status-closed:before {
+.status-closed,
+.status-closed:before {
     @apply bg-red text-white;
 }
 
 .open {
-	@apply bg-gray-200
+    @apply bg-gray-200;
 }
 .considering {
-	@apply bg-purple
+    @apply bg-purple;
 }
 .in-progress {
-	@apply bg-yellow
+    @apply bg-yellow;
 }
 .implemented {
-	@apply bg-green
+    @apply bg-green;
 }
 .closed {
-	@apply bg-red
+    @apply bg-red;
 }
