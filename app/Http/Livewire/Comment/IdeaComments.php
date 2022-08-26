@@ -28,12 +28,12 @@ class IdeaComments extends Component
 
     public function render()
     {
-        // $comments = Comment::with('user')
-        //     ->where('idea_id', $this->idea->id)
-        //     ->paginate()
-        //     ->withQueryString();
+        $comments = Comment::with('user','idea')
+            ->where('idea_id', $this->idea->id)
+            ->paginate()
+            ->withQueryString();
 
-        $comments = $this->idea->comments()->with(['user'])->paginate()->withQueryString();
+        // $comments = $this->idea->comments()->with(['user'])->paginate()->withQueryString();
 
         return view('livewire.comment.idea-comments', [
             'comments' => $comments
