@@ -17,7 +17,14 @@ Livewire.hook('message.processed', (message, component) => {
             lastComment.classList.remove('bg-green-50')
         }, 5000)
     }
-})" class="relative">
+}) @if(session('scrollToComment'))
+const commentToScrollTo = document.querySelector('#comment-{{ session('scrollToComment') }}')
+commentToScrollTo.scrollIntoView({ behavior: 'smooth' })
+commentToScrollTo.classList.add('bg-green-50')
+setTimeout(() => {
+    commentToScrollTo.classList.remove('bg-green-50')
+}, 5000)
+@endif" class="relative">
     <button type="button"
         @click="
     isOpen = !isOpen

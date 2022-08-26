@@ -1,4 +1,4 @@
-<div x-data="{ isOpen: false }"class="relative">
+<div wire:poll="getNotificationCount" x-data="{ isOpen: false }" class="relative">
     <button @click="isOpen = !isOpen
         if (isOpen) {
             Livewire.emit('getNotifications')
@@ -11,18 +11,20 @@
         @if ($notificationCount)
             <div
                 class="absolute rounded-full bg-red text-white text-xxs w-6 h-6 flex justify-center items-center border-2 -top-1 -right-1">
-                {{ $notificationCount }}
-            </div>
+                {{ $notificationCount }}</div>
         @endif
     </button>
     <ul class="absolute w-76 md:w-96 text-left text-gray-700 text-sm bg-white shadow-dialog rounded-xl max-h-128 overflow-y-auto z-10 -right-28 md:-right-12"
-        {{-- style="right: -46px" --}} x-cloak x-show.transition.origin.top="isOpen" @click.away="isOpen = false"
+        x-cloak x-show.transition.origin.top="isOpen" @click.away="isOpen = false"
         @keydown.escape.window="isOpen = false">
-
         @if ($notifications->isNotEmpty() && !$isLoading)
             @foreach ($notifications as $notification)
                 <li>
                     <a href="{{ route('ideas.show', $notification->data['idea_slug']) }}"
+                        @click.prevent="
+                        isOpen = false
+                    "
+                        wire:click.prevent="markAsRead('{{ $notification->id }}')"
                         class="flex hover:bg-gray-100 transition duration-150 ease-in px-5 py-3">
                         <img src="{{ $notification->data['user_avatar'] }}" class="rounded-xl w-10 h-10" alt="avatar">
                         <div class="ml-4">
@@ -38,7 +40,8 @@
                 </li>
             @endforeach
             <li class="border-t border-gray-300 text-center">
-                <button class="w-full block font-semibold hover:bg-gray-100 transition duration-150 ease-in px-5 py-4">
+                <button wire:click="markAllAsRead" @click="isOpen = false"
+                    class="w-full block font-semibold hover:bg-gray-100 transition duration-150 ease-in px-5 py-4">
                     Mark all as read
                 </button>
             </li>
@@ -55,8 +58,7 @@
             @endforeach
         @else
             <li class="mx-auto w-40 py-6">
-                <img src="{{ asset('img/no-ideas.svg') }}" alt="No Ideas" class="mx-auto"
-                    style="mix-blend-mode: luminosity">
+                <img src="{{ asset('img/no-ideas.svg') }}" alt="No Ideas" class="mx-auto mix-blend-luminosity">
                 <div class="text-gray-400 text-center font-bold mt-6">No new notifications</div>
             </li>
         @endif
