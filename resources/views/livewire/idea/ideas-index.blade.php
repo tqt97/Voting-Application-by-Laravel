@@ -37,8 +37,8 @@
             <livewire:idea.idea-index :key="$idea->id" :idea="$idea" :votesCount="$idea->votes_count" />
         @empty
             <div class="mx-auto w-70 mt-12">
-                <img src="{{ asset('img/no-ideas.svg') }}" alt="No Ideas" class="mx-auto"
-                    style="mix-blend-mode: luminosity">
+                <img src="{{ asset('img/no-ideas.svg') }}" alt="No Ideas" class="mx-auto mix-blend-luminosity">
+
                 <div class="text-gray-400 text-center font-bold mt-6">No ideas were found...</div>
             </div>
         @endforelse
