@@ -44,6 +44,7 @@
     </div> <!-- end ideas-container -->
 
     <div class="my-8">
-        {{ $ideas->appends(request()->query())->links() }}
+        {{-- {{ $ideas->appends(request()->query())->links() }} --}}
+        {{ $ideas->links() }}
     </div>
 </div>
