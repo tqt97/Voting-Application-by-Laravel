@@ -2,16 +2,19 @@
 
 namespace App\Http\Livewire\Idea;
 
-use App\Mail\IdeaStatusUpdatedMailable;
+use App\Jobs\NotifyAllVoters;
+use App\Models\Comment;
 use App\Models\Idea;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class SetStatus extends Component
 {
+
+
     public $idea;
     public $status;
+    public $comment;
     public $notifyAllVoters;
 
     public function mount(Idea $idea)
@@ -26,30 +29,32 @@ class SetStatus extends Component
             abort(Response::HTTP_FORBIDDEN);
         }
 
+        if ($this->idea->status_id === (int) $this->status) {
+            $this->emit('statusWasUpdatedError', 'Status is the same!');
+
+            return;
+        }
+
         $this->idea->status_id = $this->status;
         $this->idea->save();
 
         if ($this->notifyAllVoters) {
-            $this->notifyAllVoters();
+            NotifyAllVoters::dispatch($this->idea);
         }
+
+        Comment::create([
+            'user_id' => auth()->id(),
+            'idea_id' => $this->idea->id,
+            'status_id' => $this->status,
+            'body' => $this->comment ?? 'No comment was added.',
+            'is_status_update' => true,
+        ]);
+
+        $this->reset('comment');
 
         $this->emit('statusWasUpdated', 'Status was updated successfully!');
     }
 
-    public function notifyAllVoters()
-    {
-        $this->idea->votes()
-            ->select('name', 'email')
-            ->chunk(100, function ($voters) {
-                foreach ($voters as $user) {
-                    Mail::to($user)
-                        ->queue(new IdeaStatusUpdatedMailable($this->idea));
-                    // if (env('MAIL_HOST', false) == 'smtp.mailtrap.io') {
-                    // sleep(1); //use usleep(500000) for half a second or less
-                    // }
-                }
-            });
-    }
 
     public function render()
     {

@@ -7,7 +7,7 @@ The body of your message.
 {{ $idea->status->name }}
 
 @component('mail::button', ['url' => route('ideas.show', $idea)])
-Button Text
+View post
 @endcomponent
 
 Thanks,<br>

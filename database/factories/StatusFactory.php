@@ -20,7 +20,7 @@ class StatusFactory extends Factory
     {
         return [
             'name' => $this->faker->words(2, true),
-            'classes' => 'bg-gray-200',
+            // 'classes' => 'bg-gray-200',
         ];
     }
 }
