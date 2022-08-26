@@ -85,6 +85,7 @@ class IdeaShow extends Component
         $this->idea->refresh();
     }
 
+
     public function render()
     {
         return view('livewire.idea.idea-show');
