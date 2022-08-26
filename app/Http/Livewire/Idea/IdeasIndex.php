@@ -8,10 +8,12 @@ use App\Models\Status;
 use Livewire\Component;
 use App\Models\Category;
 use Livewire\WithPagination;
+use App\Http\Livewire\Traits\WithAuthRedirects;
+
 
 class IdeasIndex extends Component
 {
-    use WithPagination;
+    use WithPagination, WithAuthRedirects;
 
     public $status;
     public $category;
@@ -57,8 +59,8 @@ class IdeasIndex extends Component
     public function updatedFilter()
     {
         if ($this->filter === 'My Ideas') {
-            if (!auth()->check()) {
-                return redirect()->route('login');
+            if (auth()->guest()) {
+                return $this->redirectToLogin();
             }
         }
     }
@@ -69,7 +71,7 @@ class IdeasIndex extends Component
         $categories = Category::all();
 
         return view('livewire.idea.ideas-index', [
-            'ideas' => Idea::with('user', 'category', 'status','comments')
+            'ideas' => Idea::with('user', 'category', 'status', 'comments')
                 ->when($this->status && $this->status !== 'All', function ($query) use ($statuses) {
                     return $query->where('status_id', $statuses->get($this->status));
                 })->when($this->category && $this->category !== 'All Categories', function ($query) use ($categories) {
